@@ -16,7 +16,7 @@ def greet_user(bot,update):
     text_greet="""Привет {}!
 Я простой бот и понимаю только команду {}
 """.format(update.message.chat.first_name, '/start')
-
+    logging.info('Пользователь {} нажал /start'.format(update.message.chat.username))
     update.message.reply_text(text_greet)
 
 def talk_to_me(bot, update):
