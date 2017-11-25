@@ -24,15 +24,22 @@ def talk_to_me(bot, update):
     logging.info(user_text)
     update.message.reply_text(user_text)
 
+def word_count(bot,update):
+    user_text = update.message.text
+    word_count_in_user_text = user_text.count(' '+1)
+    print(update.message.reply_text(word_count_in_user_text))
+
 def main():
     updtr=Updater(settings.TELEGRAM_API_KEY)
 
     dp=updtr.dispatcher
     dp.add_handler(CommandHandler("start",greet_user))
-    dp.add_handler(MessageHandler(Filters.text, talk_to_me))
+    dp.add_handler(MessageHandler("wordcount", word_count))
+    dp.add_handler(CommandHandler("start",greet_user))
 
     updtr.start_polling()
     updtr.idle()
+
 
 
 if __name__=="__main__":
